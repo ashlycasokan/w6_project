@@ -34,6 +34,13 @@ func createSneaker(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid input", http.StatusBadRequest)
 		return
 	}
+
+	// Set default value for Condition if not provided
+	if newSneaker.Condition == "" {
+		newSneaker.Condition = "new" // Default value for Condition
+	}
+
+	// Set the ID and append the new sneaker to the slice
 	newSneaker.ID = nextID
 	nextID++
 	sneakers = append(sneakers, newSneaker)
